@@ -16,7 +16,7 @@ function AVG_WEIGHTED_ROLL_COUNT(weights) {
     const item_weight = weights[item_id][0];
     if (item_weight === "" || item_weight === 0) {
       continue;
-    }_
+    }
 
     non_empty_weights.push(item_weight);
     weights_sum += item_weight;
