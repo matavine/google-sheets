@@ -5,7 +5,7 @@ const _DESCENDING_ORDER = "desc"
  * Extracts the value of every top-level key of every object in the specified JSON array.
  *
  * @param {string} jsonArray A JSON string containing an array of objects.
- * @param {string} sortKey Name of a top-level key to sort the JSON array objects by prior to returning their values (optional).
+ * @param {string} sortKey Name of a top-level key to sort the JSON array objects by prior to returning their values (optional). The value referenced by the sortKey must be a number.
  * @param {string} order The order by which to sort the array of JSON objects: "asc" for ascending order (default), "desc" for descending order. Requires sortKey to be applied (optional).
  * @returns {Array} An array of values from every top-level key of every object in the specified JSON array.
  * @customfunction
