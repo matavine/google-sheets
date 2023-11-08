@@ -10,63 +10,63 @@ function AVG_WEIGHTED_ROLL_COUNT(weights) {
     return 1;
   }
 
-  let non_empty_weights = new Array();
-  let weights_sum = 0;
-  for (let item_id = 0; item_id < weights.length; item_id++) {
-    const item_weight = weights[item_id][0];
-    if (item_weight === "" || item_weight === 0) {
+  let nonEmptyWeights = new Array();
+  let weightsSum = 0;
+  for (let itemId = 0; itemId < weights.length; itemId++) {
+    const itemWeight = weights[itemId][0];
+    if (itemWeight === "" || itemWeight === 0) {
       continue;
     }
 
-    non_empty_weights.push(item_weight);
-    weights_sum += item_weight;
+    nonEmptyWeights.push(itemWeight);
+    weightsSum += itemWeight;
   }
 
-  let total_num_rolls = 0;
-  let items_seen = new Set();
-  let max_rolls = 0;
-  let min_rolls = Infinity;
-  const num_simulations = 1000;
+  let totalNumRolls = 0;
+  let itemsSeen = new Set();
+  let maxRolls = 0;
+  let minRolls = Infinity;
+  const numSimulations = 1000;
 
-  for (let sim_num = 0; sim_num < num_simulations; sim_num++) {
-    let num_rolls = 0;
+  for (let sim_num = 0; sim_num < numSimulations; sim_num++) {
+    let numRolls = 0;
 
-    while (items_seen.size < non_empty_weights.length) {
-      items_seen.add(_get_random_weighted_index(non_empty_weights, weights_sum))
-      num_rolls++;
+    while (itemsSeen.size < nonEmptyWeights.length) {
+      itemsSeen.add(_get_random_weighted_index(nonEmptyWeights, weightsSum))
+      numRolls++;
     }
 
-    if (num_rolls < min_rolls) {
-      min_rolls = num_rolls;
+    if (numRolls < minRolls) {
+      minRolls = numRolls;
     }
 
-    if (num_rolls > max_rolls) {
-      max_rolls = num_rolls;
+    if (numRolls > maxRolls) {
+      maxRolls = numRolls;
     }
 
-    total_num_rolls += num_rolls;
-    items_seen.clear();
+    totalNumRolls += numRolls;
+    itemsSeen.clear();
   }
 
   return (
-    "Avg: " + Math.round((total_num_rolls / num_simulations) + 0.5) + 
-    " Min: " + min_rolls +
-    " Max: " + max_rolls
+    "Avg: " + Math.round((totalNumRolls / numSimulations) + 0.5) + 
+    " Min: " + minRolls +
+    " Max: " + maxRolls
   );
 }
 
-function _get_random_weighted_index(weights, weights_sum) {
-  const rand_value = Math.random() * weights_sum;
-  let acc_value = 0;
+function _get_random_weighted_index(weights, weightsSum) {
+  const randValue = Math.random() * weightsSum;
+  let accValue = 0;
 
-  let item_id = 0;
-  for (; item_id < weights.length; item_id++) {
-    acc_value += weights[item_id];
-    if (rand_value < acc_value) {
-      return item_id;
+  let itemId = 0;
+  for (; itemId < weights.length; itemId++) {
+    accValue += weights[itemId];
+    if (randValue < accValue) {
+      return itemId;
     }
   }
 
-  return item_id;
+  return itemId;
 }
 
