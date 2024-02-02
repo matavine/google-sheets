@@ -1,6 +1,6 @@
 
 /**
- * Calculates the total sum of item prices from a cell conraining line-separated "item name - price" values.
+ * Calculates the total sum of item prices from a cell containing line-separated "item name - price" values.
  *
  * @param {string} data A string containing line-separated "item name - price" values.
  * @param {string} maxValueThreshold Name of a top-level key to sort the JSON array objects by prior to returning their values (optional). The value referenced by the sortKey must be a number.
